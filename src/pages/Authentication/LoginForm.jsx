@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate, Link } from "react-router-dom";
-import loadingGif from '../../assets/images/loading.gif';
 import image9 from '../../assets/images/image9.jpg';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import axios from 'axios';
@@ -26,18 +25,23 @@ const LoginForm = () => {
         password
       });
 
-      if (response.data) {
+      if (response.data && response.data.token) {
+        // Store the token in local storage
         localStorage.setItem("token", response.data.token);
         toast.success('Login successful!');
-        // Redirect based on user role
+        
+        // Check role and redirect accordingly
         const role = response.data.role;
+
         if (role === 'farmer') {
           navigate('/farmer/dashboard');
-        } else if (role === 'wholesale') {
+        } else if (role === 'wholesaler') {
           navigate('/wholesaler/dashboard');
         } else {
-          navigate('/dashboard');
+          toast.error('Unknown user role');
         }
+      } else {
+        toast.error('Invalid response from server');
       }
     } catch (error) {
       console.error(error);
