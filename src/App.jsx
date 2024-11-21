@@ -22,7 +22,7 @@ import LoginForm from './pages/Authentication/LoginForm';
 
 // Farmer Dashboard Pages
 import FarmerOverview from './pages/FarmerDashboard/FarmerOverview';
-import Orders from './pages/farmerdashboard/Orders';
+import Orders from './pages/FarmerDashboard/Orders';
 import ProductList from './pages/farmerdashboard/ProductList';
 import Payments from './pages/farmerdashboard/Payments';
 import ProductDetails from './pages/farmerdashboard/ProductDetails';
