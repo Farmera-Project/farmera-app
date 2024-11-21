@@ -46,21 +46,21 @@ const FarmerSignup = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-white">
-      <div className="flex w-full max-w-3xl h-[500px] bg-white rounded-lg shadow-lg overflow-hidden mx-4">
+      <div className="flex w-full max-w-3xl h-[390px] bg-white rounded-lg shadow-lg overflow-hidden mx-4">
         <div className="w-full lg:w-[60%] p-4">
           <Link 
             to="/" 
-            className="text-[#004721] hover:text-[#009c4a] mb-2 inline-block text-sm"
+            className="text-[#004721] hover:text-[#009c4a] mb-1 inline-block text-sm"
           >
             ← Back to Home
           </Link>
 
-          <h2 className="text-2xl font-bold mb-3 text-center" style={{ color: "#004721" }}>
+          <h2 className="text-2xl font-bold mb-2 text-center" style={{ color: "#004721" }}>
             Farmer Sign Up
           </h2>
           
           <form onSubmit={handleSubmit} className="w-[90%] mx-auto">
-            <div className="mb-2">
+            <div className="mb-1.5">
               <label className="block text-gray-700 font-bold mb-1 text-sm">Full Name</label>
               <input
                 name="fullName"
@@ -73,7 +73,7 @@ const FarmerSignup = () => {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-2 mb-2">
+            <div className="grid grid-cols-2 gap-2 mb-1.5">
               <div>
                 <label className="block text-gray-700 font-bold mb-1 text-sm">Email</label>
                 <input
@@ -113,47 +113,36 @@ const FarmerSignup = () => {
                   required
                 />
               </div>
-              {/* <div>
-                <label className="block text-gray-700 font-bold mb-1 text-sm">Farm Name</label>
+              <div>
+                <label className="block text-gray-700 font-bold mb-1 text-sm">Address</label>
                 <input
-                  name="farmName"
+                  name="address"
                   type="text"
-                  placeholder="Farm Name"
+                  placeholder="Address"
                   className="w-full p-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
-                  value={farmName}
-                  onChange={(e) => setFarmName(e.target.value)}
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                   required
                 />
-              </div> */}
+              </div>
             </div>
 
-            <div className="mb-3">
-              <label className="block text-gray-700 font-bold mb-1 text-sm">Address</label>
-              <input
-                name="address"
-                type="text"
-                placeholder="Address"
-                className="w-full p-1.5 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:ring-green-300"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-                required
-              />
+            <div className="flex justify-center mt-2">
+              <button
+                type="submit"
+                className="w-[200px] py-1.5 px-4 text-white rounded-lg"
+                disabled={loading}
+                style={{
+                  backgroundColor: loading ? "#009c4a" : "#004721",
+                }}
+              >
+                {loading ? (
+                  <img src={loadingGif} alt="Loading..." className="h-5 mx-auto" />
+                ) : (
+                  "Sign Up"
+                )}
+              </button>
             </div>
-
-            <button
-              type="submit"
-              className="w-full py-2 px-4 text-white rounded-lg"
-              disabled={loading}
-              style={{
-                backgroundColor: loading ? "#009c4a" : "#004721",
-              }}
-            >
-              {loading ? (
-                <img src={loadingGif} alt="Loading..." className="h-6 mx-auto" />
-              ) : (
-                "Sign Up"
-              )}
-            </button>
           </form>
         </div>
 
@@ -161,7 +150,7 @@ const FarmerSignup = () => {
           <img 
             src={image9} 
             alt="Farmer Signup" 
-            className="w-full h-[500px] object-cover"
+            className="w-full h-[450px] object-cover"
           />
         </div>
       </div>

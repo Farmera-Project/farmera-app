@@ -24,19 +24,19 @@ const LoginForm = () => {
         email,
         password
       });
-
+console.log(response.data)
       if (response.data && response.data.token) {
         // Store the token in local storage
         localStorage.setItem("token", response.data.token);
         toast.success('Login successful!');
         
         // Check role and redirect accordingly
-        const role = response.data.role;
+        const role = response.data.user.role;
 
         if (role === 'farmer') {
-          navigate('/farmer/dashboard');
+          navigate('/farmer-dashboard');
         } else if (role === 'wholesaler') {
-          navigate('/wholesaler/dashboard');
+          navigate('/wholesaler-dashboard');
         } else {
           toast.error('Unknown user role');
         }
@@ -61,7 +61,7 @@ const LoginForm = () => {
         <span className="font-semibold">Back Home</span>
       </Link>
 
-      <div className="flex w-full max-w-4xl h-[500px] bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="flex w-full max-w-4xl h-[390px] bg-white rounded-lg shadow-lg overflow-hidden">
         {/* Form Section */}
         <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
           <h2 className="text-3xl font-bold mb-6 text-center text-[#004721]">

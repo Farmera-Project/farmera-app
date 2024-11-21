@@ -46,7 +46,7 @@ const WholesalerSignup = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-white">
-      <div className="flex w-full max-w-3xl h-[500px] bg-white rounded-lg shadow-lg overflow-hidden mx-4">
+      <div className="flex w-full max-w-3xl h-[410px] bg-white rounded-lg shadow-lg overflow-hidden mx-4">
         <div className="w-full lg:w-[60%] p-4">
           <Link 
             to="/" 
