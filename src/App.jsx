@@ -16,7 +16,7 @@ import Home from './components/Home';
 import About from './components/About';
 import ServicesPage from './components/ServicesPage';
 import ContactForm from './components/ContanctForm';
-import FarmerSignup from './pages/authentication/FarmerSignup';
+import FarmerSignup from './pages/Authentication/FarmerSignup';
 import WholesalerSignup from './pages/authentication/WholesalerSignup';
 import LoginForm from './pages/authentication/LoginForm';
 
