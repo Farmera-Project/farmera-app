@@ -24,15 +24,13 @@ const LoginForm = () => {
         email,
         password
       });
-console.log(response.data)
+
       if (response.data && response.data.token) {
-        // Store the token in local storage
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("user", JSON.stringify(response.data.user));
         toast.success('Login successful!');
         
-        // Check role and redirect accordingly
         const role = response.data.user.role;
-
         if (role === 'farmer') {
           navigate('/farmer-dashboard');
         } else if (role === 'wholesaler') {
@@ -52,102 +50,111 @@ console.log(response.data)
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white relative">
-      <Link
-        to="/"
-        className="absolute top-4 left-4 flex items-center text-[#004721] hover:text-[#009C4A] transition-colors duration-300"
-      >
-        <ArrowBackIcon className="mr-1" />
-        <span className="font-semibold">Back Home</span>
-      </Link>
-
-      <div className="flex w-full max-w-4xl h-[390px] bg-white rounded-lg shadow-lg overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="flex w-full max-w-5xl bg-white rounded-xl shadow-lg overflow-hidden mx-4 ml-44 h-[500px]">
         {/* Form Section */}
-        <div className="w-full md:w-1/2 p-8 flex flex-col justify-center">
-          <h2 className="text-3xl font-bold mb-6 text-center text-[#004721]">
-            Login
+        <div className="w-full md:w-1/2 p-10">
+          <Link
+            to="/"
+            className="text-[#004721] hover:text-[#009c4a] mb-6 inline-flex items-center gap-2 text-sm"
+          >
+            <ArrowBackIcon fontSize="small" />
+            Back to Home
+          </Link>
+
+          <h2 className="text-3xl font-bold mb-8 text-center text-[#004721]">
+            Welcome Back!
           </h2>
           
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5 w-[90%] mx-auto">
             <div>
-              <label className="block text-gray-700 font-bold mb-2">
-                Email
+              <label className="block text-gray-700 font-medium mb-2 text-sm">
+                Email Address
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004721]"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300 transition-all"
                 placeholder="Enter your email"
                 required
               />
             </div>
 
             <div className="relative">
-              <label className="block text-gray-700 font-bold mb-2">
+              <label className="block text-gray-700 font-medium mb-2 text-sm">
                 Password
               </label>
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004721] pr-10"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300 transition-all pr-10"
                 placeholder="Enter your password"
                 required
               />
-              <div
-                className="absolute right-3 top-[38px] cursor-pointer text-[#004721]"
+              <button
+                type="button"
+                className="absolute right-3 top-[42px] text-gray-500 hover:text-[#004721] transition-colors duration-300"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </div>
+                {showPassword ? <FaEyeSlash size={20} /> : <FaEye size={20} />}
+              </button>
             </div>
 
-            <div className="flex justify-between items-center">
+            <div className="flex justify-end">
               <Link 
                 to="/forgot-password"
-                className="text-sm text-[#004721] hover:text-[#009C4A] transition-colors duration-300"
+                className="text-sm text-[#004721] hover:text-[#009c4a] transition-colors duration-300"
               >
                 Forgot Password?
               </Link>
             </div>
 
-            <button
-              type="submit"
-              className={`w-full py-2 px-4 rounded-lg text-white transition-colors duration-300 ${
-                loading ? 'bg-gray-400' : 'bg-[#004721] hover:bg-[#009C4A]'
-              }`}
-              disabled={loading}
-            >
-              {loading ? (
-                <div className="flex items-center justify-center">
-                  <CircularProgress size={20} sx={{ color: 'white' }} />
-                  <span className="ml-2">Logging in...</span>
-                </div>
-              ) : (
-                "Login"
-              )}
-            </button>
+            <div className="flex justify-center mt-6">
+              <button
+                type="submit"
+                className={`w-[250px] py-3 px-6 rounded-lg text-white font-medium transition-all duration-300 flex items-center justify-center ${
+                  loading ? 'bg-[#009c4a]' : 'bg-[#004721] hover:bg-[#009c4a]'
+                }`}
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <CircularProgress size={20} sx={{ color: 'white' }} />
+                    <span className="ml-2">Logging in...</span>
+                  </>
+                ) : (
+                  "Login"
+                )}
+              </button>
+            </div>
 
-            <div className="text-center mt-4">
-              <span className="text-gray-600">Don't have an account? </span>
+            <p className="text-center text-gray-600 text-sm mt-4">
+              Don't have an account?{" "}
               <Link 
                 to="/signup" 
-                className="font-semibold text-[#004721] hover:text-[#009C4A] transition-colors duration-300"
+                className="font-medium text-[#004721] hover:text-[#009c4a] transition-colors duration-300"
               >
                 Sign up here
               </Link>
-            </div>
+            </p>
           </form>
         </div>
 
         {/* Image Section */}
-        <div className="w-1/2 hidden md:block">
+        <div className="hidden md:block md:w-1/2 relative">
           <img
             src={image9}
             alt="Login"
-            className="w-full h-full object-cover"
+            className="w-full h-[500px] object-cover"
           />
+          <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+            <div className="text-white text-center p-6">
+              <h3 className="text-2xl font-bold mb-2">Welcome to Farmera</h3>
+              <p className="text-base">Access your account to manage your poultry feed orders</p>
+            </div>
+          </div>
         </div>
       </div>
 
