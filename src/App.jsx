@@ -23,9 +23,9 @@ import LoginForm from './pages/Authentication/LoginForm';
 // Farmer Dashboard Pages
 import FarmerOverview from './pages/FarmerDashboard/FarmerOverview';
 import Orders from './pages/FarmerDashboard/Orders';
-import ProductList from './pages/farmerdashboard/ProductList';
+import ProductList from './pages/FarmerDashboard/ProductList';
 import Payments from './pages/farmerdashboard/Payments';
-import ProductDetails from './pages/farmerdashboard/ProductDetails';
+import ProductDetails from './pages/FarmerDashboard/ProductDetails';
 import FarmerProfile from './pages/FarmerDashboard/FarmerProfile';
 import DeliveryPage from './pages/FarmerDashboard/DeliveryPage';
 import DeliveryTracking from './pages/FarmerDashboard/DeliveryTracking';
