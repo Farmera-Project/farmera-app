@@ -125,11 +125,11 @@ const FarmerOverview = () => {
       sx={{ 
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         minHeight: '100vh',
         bgcolor: '#f5f5f5',
         py: 6,
-        
+        mt: 4
       }}
     >
       <Container 
@@ -146,6 +146,7 @@ const FarmerOverview = () => {
           sx={{ 
             p: 3,
             mb: 4,
+            mt: 2,
             borderRadius: 2,
             background: 'linear-gradient(135deg, #004721 0%, #009c4a 100%)',
             color: 'white',
@@ -156,10 +157,22 @@ const FarmerOverview = () => {
           }}
         >
           <Box>
-            <Typography variant="h4" fontWeight="bold" sx={{ mb: 1 }}>
+            <Typography 
+              variant="h4" 
+              fontWeight="bold" 
+              sx={{ 
+                mb: 1,
+                fontSize: { xs: '1.5rem', sm: '2rem' }
+              }}
+            >
               Welcome Back, Farmer!
             </Typography>
-            <Typography variant="subtitle1">
+            <Typography 
+              variant="subtitle1"
+              sx={{ 
+                fontSize: { xs: '0.875rem', sm: '1rem' }
+              }}
+            >
               Manage your feed orders and track deliveries
             </Typography>
           </Box>

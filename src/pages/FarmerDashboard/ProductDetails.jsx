@@ -1,110 +1,197 @@
 import React from 'react';
-import { Card, CardContent } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { 
+  Box, 
+  Container, 
+  Typography, 
+  Card, 
+  CardMedia, 
+  Grid, 
+  Chip,
+  Button,
+  Divider,
+  IconButton
+} from '@mui/material';
+import { useParams, useNavigate } from 'react-router-dom';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import InventoryIcon from '@mui/icons-material/Inventory';
+
+// Import your images
+import images7 from '../../assets/images/images7.jpg';
+import images13 from '../../assets/images/images13.jpg';
+import images11 from '../../assets/images/images11.jpg';
 
 const ProductDetails = () => {
+  const { id } = useParams();
   const navigate = useNavigate();
 
-  // Sample product data - replace with your actual product data
-  const product = {
-    id: 1,
-    name: "Poultry Feed Mix",
-    price: 15.99,
-    unit: "bag",
-    image: "/assets/images/image10.jpg", // Update image path as needed
-    description: "Premium feed mix designed to boost poultry growth and health",
-    details: {
-      farmLocation: "Healthy Farm Supplies",
-      harvestedDate: "2024-11-14",
-      organic: true,
-      storageInfo: "Store in a cool, dry place away from sunlight",
-      nutritionInfo: "Rich in essential nutrients for poultry development"
+  const handleBack = () => {
+    navigate('/farmer-dashboard/products');
+  };
+
+  // Mock product data - in a real app, you'd fetch this based on the ID
+  const products = {
+    1: {
+      id: 1,
+      name: "Premium Layer Feed",
+      price: 280.00,
+      unit: "50kg bag",
+      image: images7,
+      description: "Specially formulated feed to improve egg production in layers.",
+      status: "In Stock",
+      stockAmount: 150,
+      category: "Layer Feed",
+      deliveryTime: "2-3 days",
+      features: [
+        "High calcium content for strong eggshells",
+        "Balanced protein levels",
+        "Essential vitamins and minerals",
+        "Promotes better egg production"
+      ]
+    },
+    2: {
+      id: 2,
+      name: "Broiler Starter Feed",
+      price: 320.00,
+      unit: "50kg bag",
+      image: images11,
+      description: "High-protein feed for rapid growth in broilers.",
+      status: "Low Stock",
+      stockAmount: 45,
+      category: "Starter Feed",
+      deliveryTime: "1-2 days",
+      features: [
+        "High protein content",
+        "Enhanced with growth promoters",
+        "Complete vitamin profile",
+        "Supports rapid growth"
+      ]
+    },
+    3: {
+      id: 3,
+      name: "Organic Chick Feed",
+      price: 300.00,
+      unit: "50kg bag",
+      image: images13,
+      description: "Nutrient-rich feed to give young chicks a strong start.",
+      status: "In Stock",
+      stockAmount: 200,
+      category: "Chick Feed",
+      deliveryTime: "2-3 days",
+      features: [
+        "Natural ingredients",
+        "Balanced nutrition",
+        "Easy to digest",
+        "Promotes healthy growth"
+      ]
     }
   };
 
-  const handleOrderNow = () => {
-    navigate('/farmer-dashboard/orders'); // Update with the path to your order form
-  };
+  const product = products[id];
+
+  if (!product) {
+    return (
+      <Box sx={{ p: 3 }}>
+        <Typography>Product not found</Typography>
+      </Box>
+    );
+  }
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
-      <button 
-        onClick={() => window.history.back()} 
-        className="text-green-600 hover:text-green-700 mb-4 flex items-center"
-      >
-        ← Back to Products
-      </button>
+    <Box sx={{ bgcolor: '#f5f5f5', minHeight: '100vh', py: 4 }}>
+      <Container maxWidth="lg">
+        {/* Back Button */}
+        <IconButton 
+          onClick={handleBack} 
+          sx={{ mb: 2, color: '#004721' }}
+        >
+          <ArrowBackIcon />
+        </IconButton>
 
-      <Card className="overflow-hidden">
-        <CardContent className="p-0">
-          {/* Product Image */}
-          <div className="w-full h-64 sm:h-80 relative">
-            <img
-              src={product.image}
-              alt={product.name}
-              className="w-full h-full object-cover"
-            />
-          </div>
+        <Card sx={{ boxShadow: '0 2px 12px rgba(0,0,0,0.08)' }}>
+          <Grid container>
+            {/* Product Image */}
+            <Grid item xs={12} md={6}>
+              <CardMedia
+                component="img"
+                height="400"
+                image={product.image}
+                alt={product.name}
+                sx={{ objectFit: 'cover' }}
+              />
+            </Grid>
 
-          {/* Product Information */}
-          <div className="p-6">
-            <div className="flex justify-between items-start mb-4">
-              <h1 className="text-3xl font-bold">{product.name}</h1>
-              <div className="text-2xl font-bold text-green-600">
-                ${product.price}/{product.unit}
-              </div>
-            </div>
+            {/* Product Details */}
+            <Grid item xs={12} md={6}>
+              <Box sx={{ p: 4 }}>
+                <Typography variant="h4" sx={{ 
+                  fontWeight: 'bold',
+                  color: '#004721',
+                  mb: 2
+                }}>
+                  {product.name}
+                </Typography>
 
-            <div className="space-y-6">
-              {/* Main Description */}
-              <div>
-                <h2 className="text-xl font-semibold mb-2">About this Product</h2>
-                <p className="text-gray-600">{product.description}</p>
-              </div>
+                <Chip 
+                  label={product.status}
+                  sx={{
+                    mb: 3,
+                    bgcolor: product.status === 'In Stock' ? '#e8f5e9' : '#fff3e0',
+                    color: product.status === 'In Stock' ? '#1b5e20' : '#e65100',
+                    border: `1px solid ${product.status === 'In Stock' ? '#1b5e20' : '#e65100'}`
+                  }}
+                />
 
-              {/* Farm Details */}
-              <div>
-                <h2 className="text-xl font-semibold mb-2">Farm Information</h2>
-                <div className="bg-green-50 p-4 rounded-lg">
-                  <p className="mb-2">
-                    <span className="font-semibold">Farm:</span> {product.details.farmLocation}
-                  </p>
-                  <p className="mb-2">
-                    <span className="font-semibold">Harvested:</span> {product.details.harvestedDate}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Farming Method:</span>{' '}
-                    {product.details.organic ? 'Organic' : 'Conventional'}
-                  </p>
-                </div>
-              </div>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                  {product.description}
+                </Typography>
 
-              {/* Storage and Nutrition */}
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <h2 className="text-xl font-semibold mb-2">Storage</h2>
-                  <p className="text-gray-600">{product.details.storageInfo}</p>
-                </div>
-                <div>
-                  <h2 className="text-xl font-semibold mb-2">Nutrition</h2>
-                  <p className="text-gray-600">{product.details.nutritionInfo}</p>
-                </div>
-              </div>
+                <Box sx={{ mb: 3 }}>
+                  <Typography variant="h5" sx={{ color: '#004721', fontWeight: 'bold' }}>
+                    ₵{product.price.toFixed(2)}
+                    <Typography component="span" variant="body2" sx={{ color: 'text.secondary' }}>
+                      /{product.unit}
+                    </Typography>
+                  </Typography>
+                </Box>
 
-              {/* Order Button with Redirect */}
-              <div className="pt-4">
-                <button 
-                  onClick={handleOrderNow}
-                  className="w-full bg-green-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-700 transition-colors"
-                >
-                  Order Now
-                </button>
-              </div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+                <Divider sx={{ my: 3 }} />
+
+                <Box sx={{ mb: 3 }}>
+                  <Box sx={{ display: 'flex', gap: 2, mb: 2 }}>
+                    <Chip 
+                      icon={<InventoryIcon />}
+                      label={`Stock: ${product.stockAmount}`}
+                      sx={{ bgcolor: '#f5f5f5' }}
+                    />
+                    <Chip 
+                      icon={<LocalShippingIcon />}
+                      label={`Delivery: ${product.deliveryTime}`}
+                      sx={{ bgcolor: '#f5f5f5' }}
+                    />
+                  </Box>
+                </Box>
+
+                <Typography variant="h6" sx={{ mb: 2, color: '#004721' }}>
+                  Key Features:
+                </Typography>
+                <Box component="ul" sx={{ pl: 2 }}>
+                  {product.features.map((feature, index) => (
+                    <Typography 
+                      component="li" 
+                      key={index}
+                      sx={{ mb: 1 }}
+                    >
+                      {feature}
+                    </Typography>
+                  ))}
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Card>
+      </Container>
+    </Box>
   );
 };
 

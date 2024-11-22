@@ -102,7 +102,7 @@ const AppContent = () => {
             <Route path="orders" element={<Orders />} />
             <Route path="product-list" element={<ProductList />} />
             <Route path="payments" element={<Payments />} />
-            <Route path="product-details" element={<ProductDetails />} />
+            <Route path="product-details/:id" element={<ProductDetails />} />
             <Route path="profile" element={<FarmerProfile />} />
             <Route path="delivery" element={<DeliveryPage />} />
             <Route path="tracking" element={<DeliveryTracking />} />
