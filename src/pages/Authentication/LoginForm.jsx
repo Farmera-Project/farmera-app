@@ -51,9 +51,9 @@ const LoginForm = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="flex w-full max-w-6xl bg-white rounded-xl shadow-lg overflow-hidden mx-4 ml-80 h-[500px]">
+      <div className="flex w-full max-w-7xl bg-white rounded-xl shadow-lg overflow-hidden mx-4 ml-80 h-[500px]">
         {/* Form Section */}
-        <div className="w-full md:w-1/2 p-12">
+        <div className="w-full md:w-1/2 p-14">
           <Link
             to="/"
             className="text-[#004721] hover:text-[#009c4a] mb-6 inline-flex items-center gap-2 text-sm"
@@ -66,7 +66,7 @@ const LoginForm = () => {
             Welcome Back!
           </h2>
           
-          <form onSubmit={handleSubmit} className="space-y-5 w-[95%] mx-auto">
+          <form onSubmit={handleSubmit} className="space-y-5 w-full mx-auto">
             <div>
               <label className="block text-gray-700 font-medium mb-2 text-sm">
                 Email Address
