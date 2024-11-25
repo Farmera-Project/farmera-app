@@ -105,7 +105,7 @@ const StockList = () => {
             color="#004721" 
             gutterBottom
           >
-            My Stock List
+             Stock List
           </Typography>
         </Box>
 
