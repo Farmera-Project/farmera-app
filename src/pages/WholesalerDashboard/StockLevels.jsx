@@ -32,9 +32,16 @@ const formatPrice = (price) => {
 
 const StockLevels = () => {
   const [stocks, setStocks] = useState([
-    { id: 1, productName: 'Tomatoes', quantity: 100, unit: 'kg', price: 25.00, category: 'Vegetables' },
-    { id: 2, productName: 'Potatoes', quantity: 150, unit: 'kg', price: 15.00, category: 'Vegetables' },
-    { id: 3, productName: 'Onions', quantity: 80, unit: 'kg', price: 20.00, category: 'Vegetables' },
+    { id: 1, productName: 'Premium Layer Feed', quantity: 100, unit: 'bags', price: 280.00, category: 'Layer Feed' },
+    { id: 2, productName: 'Broiler Starter', quantity: 150, unit: 'bags', price: 300.00, category: 'Broiler Feed' },
+    { id: 3, productName: 'Grower Feed', quantity: 80, unit: 'bags', price: 260.00, category: 'Grower Feed' },
+    { id: 4, productName: 'Layer Mash', quantity: 120, unit: 'bags', price: 290.00, category: 'Layer Feed' },
+    { id: 5, productName: 'Chick Starter', quantity: 90, unit: 'bags', price: 320.00, category: 'Starter Feed' },
+    { id: 6, productName: 'Finisher Feed', quantity: 110, unit: 'bags', price: 275.00, category: 'Finisher Feed' },
+    { id: 7, productName: 'Layer Concentrate', quantity: 70, unit: 'bags', price: 350.00, category: 'Concentrate' },
+    { id: 8, productName: 'Broiler Finisher', quantity: 130, unit: 'bags', price: 285.00, category: 'Broiler Feed' },
+    { id: 9, productName: 'Pre-Starter Feed', quantity: 85, unit: 'bags', price: 330.00, category: 'Starter Feed' },
+    { id: 10, productName: 'Layer Pre-Mix', quantity: 60, unit: 'bags', price: 340.00, category: 'Pre-Mix' }
   ]);
 
   const [open, setOpen] = useState(false);
@@ -42,15 +49,23 @@ const StockLevels = () => {
   const [newStock, setNewStock] = useState({
     productName: '',
     quantity: '',
-    unit: 'kg',
+    unit: 'bags',
     price: '',
     category: ''
   });
 
   const [errors, setErrors] = useState({});
 
-  const units = ['kg', 'g', 'pieces', 'boxes', 'bags'];
-  const categories = ['Vegetables', 'Fruits', 'Grains', 'Other'];
+  const units = ['bags', 'kg', 'tons'];
+  const categories = [
+    'Layer Feed',
+    'Broiler Feed',
+    'Grower Feed',
+    'Starter Feed',
+    'Finisher Feed',
+    'Concentrate',
+    'Pre-Mix'
+  ];
 
   const validateForm = () => {
     const newErrors = {};
@@ -75,7 +90,7 @@ const StockLevels = () => {
       setNewStock({
         productName: '',
         quantity: '',
-        unit: 'kg',
+        unit: 'bags',
         price: '',
         category: ''
       });
@@ -122,7 +137,7 @@ const StockLevels = () => {
   };
 
   return (
-    <Box sx={{ width: '100%', p: 3 }}>
+    <Box sx={{ width: '100%', p: 3, mt: 8 }}>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
         <Typography variant="h5" color="#004721" fontWeight="bold">
           Stock Levels
@@ -137,21 +152,83 @@ const StockLevels = () => {
         </Button>
       </Box>
 
-      <TableContainer component={Paper} sx={{ mt: 2 }}>
-        <Table>
-          <TableHead sx={{ bgcolor: '#004721' }}>
+      <TableContainer 
+        component={Paper} 
+        sx={{ 
+          mt: 2,
+          maxHeight: '70vh',
+          overflow: 'auto'
+        }}
+      >
+        <Table stickyHeader>
+          <TableHead>
             <TableRow>
-              <TableCell sx={{ color: 'white' }}>Product Name</TableCell>
-              <TableCell sx={{ color: 'white' }}>Category</TableCell>
-              <TableCell sx={{ color: 'white' }}>Quantity</TableCell>
-              <TableCell sx={{ color: 'white' }}>Unit</TableCell>
-              <TableCell sx={{ color: 'white' }}>Price (GH₵)</TableCell>
-              <TableCell sx={{ color: 'white' }}>Actions</TableCell>
+              <TableCell 
+                sx={{ 
+                  bgcolor: '#004721', 
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                Product Name
+              </TableCell>
+              <TableCell 
+                sx={{ 
+                  bgcolor: '#004721', 
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                Category
+              </TableCell>
+              <TableCell 
+                sx={{ 
+                  bgcolor: '#004721', 
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                Quantity
+              </TableCell>
+              <TableCell 
+                sx={{ 
+                  bgcolor: '#004721', 
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                Unit
+              </TableCell>
+              <TableCell 
+                sx={{ 
+                  bgcolor: '#004721', 
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                Price (GH₵)
+              </TableCell>
+              <TableCell 
+                sx={{ 
+                  bgcolor: '#004721', 
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                Actions
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {stocks.map((stock) => (
-              <TableRow key={stock.id}>
+              <TableRow 
+                key={stock.id}
+                sx={{
+                  '&:nth-of-type(odd)': {
+                    backgroundColor: 'rgba(0, 71, 33, 0.02)',
+                  },
+                }}
+              >
                 <TableCell>{stock.productName}</TableCell>
                 <TableCell>{stock.category}</TableCell>
                 <TableCell>{stock.quantity}</TableCell>
