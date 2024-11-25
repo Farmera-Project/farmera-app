@@ -46,11 +46,11 @@ const WholesalerSignup = () => {
 
   return (
     <div className="min-h-screen flex justify-center items-center bg-gray-50">
-      <div className="flex w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden mx-4 ml-36 h-[550px]">
-        <div className="w-full lg:w-[60%] p-6">
+      <div className="flex w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden mx-4 ml-72 h-[550px]">
+        <div className="w-full lg:w-[60%] p-8">
           <Link 
             to="/" 
-            className="text-[#004721] hover:text-[#009c4a] mb-2 inline-flex items-center gap-2 text-sm"
+            className="text-[#004721] hover:text-[#009c4a] mb-4 inline-flex items-center gap-2 text-sm"
           >
             ← Back to Home
           </Link>

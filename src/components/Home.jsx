@@ -6,27 +6,27 @@ import { Box, Typography, Button, Grid, Card, CardMedia, CardContent, CardAction
 import { Link } from 'react-router-dom';
 
 // Import images
-import image8 from '../assets/images/image8.jpg'
+import images11 from '../assets/images/images11.jpg'
+import image8 from '../assets/images/image8.jpg';
 import images2 from '../assets/images/images2.jpg';
+import images7 from '../assets/images/images7.jpg';
+import images1 from '../assets/images/images1.jpg';
+import images13 from '../assets/images/images13.jpg';
 import images3 from '../assets/images/images3.jpg';
-import image4 from '../assets/images/image4.jpg';
-import image11 from '../assets/images/image11.jpg';
-import image13 from '../assets/images/image13.jpg';
-import image7 from '../assets/images/image7.jpg';
 
 const Home = () => {
   // Add error handling for images
   const images = [
-    { src: image8, alt: 'Image 8' },
     { src: images2, alt: 'Images 2' },
+    { src: image8, alt: 'Image 8' },
     { src: images3, alt: 'Images 3' }
   ];
 
   const products = [
-    { id: 1, image: image4, title: "Product 1", description: "A high-quality product for your farm needs, including seeds, tools, and more." },
-    { id: 2, image: image11, title: "Product 2", description: "Reliable products for improving farm productivity with ease of use and efficiency." },
-    { id: 3, image: image13, title: "Product 3", description: "Advanced tools designed to improve your farm's performance and efficiency." },
-    { id: 4, image: image7, title: "Product 4", description: "Quality tools and seeds to meet your farm's specific needs for growth and development." }
+    { id: 1, image: images1, title: "Product 1", description: "A high-quality product for your farm needs, including seeds, tools, and more." },
+    { id: 2, image: images13, title: "Product 2", description: "Reliable products for improving farm productivity with ease of use and efficiency." },
+    { id: 3, image: images7, title: "Product 3", description: "Advanced tools designed to improve your farm's performance and efficiency." },
+    { id: 4, image: images11, title: "Product 4", description: "Quality tools and seeds to meet your farm's specific needs for growth and development." }
   ];
 
   const settings = {

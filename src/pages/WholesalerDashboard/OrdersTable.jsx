@@ -31,9 +31,9 @@ const sampleOrders = [
     id: "ORD002", 
     productName: "Product B", 
     quantity: 5, 
-    customer: "Calvin Mensah",
+    customer: "Calvin Bekoe",
     status: "completed",
-    date: "2024-03-14",
+    date: "2024-11-22",
     total: 250.00
   },
 ];
