@@ -21,6 +21,18 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import WarningIcon from '@mui/icons-material/Warning';
 
+// Add this constant at the top of your file
+const DEFAULT_IMAGES = {
+  'Layer Feed': 'https://i.ibb.co/TrHxNSB/layer-feed.jpg',
+  'Broiler Feed': 'https://i.ibb.co/C2Lx4mj/broiler-feed.jpg',
+  'Grower Feed': 'https://i.ibb.co/YX89WNx/grower-feed.jpg',
+  'Starter Feed': 'https://i.ibb.co/YyD5hhk/starter-feed.jpg',
+  'Finisher Feed': 'https://i.ibb.co/0M8t3Cw/finisher-feed.jpg',
+  'Concentrate': 'https://i.ibb.co/VvxBzzg/concentrate.jpg',
+  'Pre-Mix': 'https://i.ibb.co/C1J6KnR/pre-mix.jpg',
+  'default': 'https://i.ibb.co/M6nxQHB/default-feed.jpg'
+};
+
 function UpdateStock() {
   const [products, setProducts] = useState([]);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -39,7 +51,11 @@ function UpdateStock() {
   // Load products from localStorage
   const loadProducts = () => {
     const storedProducts = JSON.parse(localStorage.getItem('products') || '[]');
-    setProducts(storedProducts);
+    const productsWithImages = storedProducts.map(product => ({
+      ...product,
+      image: product.image || DEFAULT_IMAGES[product.category] || DEFAULT_IMAGES.default
+    }));
+    setProducts(productsWithImages);
   };
 
   // Handle edit button click
@@ -236,45 +252,96 @@ function UpdateStock() {
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
-                position: 'relative'
+                position: 'relative',
+                '&:hover': {
+                  boxShadow: 6
+                }
               }}
             >
-              {product.image && (
+              <Box
+                sx={{
+                  position: 'relative',
+                  paddingTop: '56.25%', // 16:9 aspect ratio
+                  backgroundColor: '#f5f5f5'
+                }}
+              >
                 <Box
                   component="img"
+                  src={product.image || DEFAULT_IMAGES.default}
+                  alt={product.name}
+                  onError={(e) => {
+                    e.target.src = DEFAULT_IMAGES.default;
+                  }}
                   sx={{
-                    height: 200,
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
                     width: '100%',
+                    height: '100%',
                     objectFit: 'cover',
                   }}
-                  src={product.image}
-                  alt={product.name}
                 />
-              )}
+              </Box>
               <CardContent sx={{ flexGrow: 1 }}>
-                <Typography variant="h6" component="h2" gutterBottom>
+                <Typography 
+                  variant="h6" 
+                  component="h2" 
+                  gutterBottom
+                  sx={{
+                    color: '#004721',
+                    fontWeight: 'bold'
+                  }}
+                >
                   {product.name}
                 </Typography>
-                <Typography variant="body2" color="text.secondary" paragraph>
+                <Typography 
+                  variant="body2" 
+                  color="text.secondary" 
+                  paragraph
+                  sx={{ minHeight: '3em' }}
+                >
                   {product.description}
                 </Typography>
-                <Typography variant="body1">
-                  Price: GH₵{product.price}
+                <Typography 
+                  variant="body1"
+                  sx={{ 
+                    color: '#009c4a',
+                    fontWeight: 'medium',
+                    mb: 1
+                  }}
+                >
+                  Price: GH₵{product.price.toFixed(2)}
                 </Typography>
-                <Typography variant="body1">
-                  Stock: {product.stock}
+                <Typography 
+                  variant="body1"
+                  sx={{
+                    color: product.stock < 10 ? '#d32f2f' : '#004721',
+                    fontWeight: 'medium'
+                  }}
+                >
+                  Stock: {product.stock} {product.stock < 10 && '(Low Stock)'}
                 </Typography>
               </CardContent>
-              <CardActions>
+              <CardActions sx={{ justifyContent: 'flex-end', p: 2 }}>
                 <IconButton 
                   onClick={() => handleEdit(product)}
-                  sx={{ color: '#004721' }}
+                  sx={{ 
+                    color: '#004721',
+                    '&:hover': {
+                      bgcolor: 'rgba(0, 71, 33, 0.1)'
+                    }
+                  }}
                 >
                   <EditIcon />
                 </IconButton>
                 <IconButton 
                   onClick={() => handleDeleteClick(product)}
-                  sx={{ color: '#ff1744' }}
+                  sx={{ 
+                    color: '#d32f2f',
+                    '&:hover': {
+                      bgcolor: 'rgba(211, 47, 47, 0.1)'
+                    }
+                  }}
                 >
                   <DeleteIcon />
                 </IconButton>
