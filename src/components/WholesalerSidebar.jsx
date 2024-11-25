@@ -19,6 +19,7 @@ import UpdateIcon from '@mui/icons-material/Update';
 import PaymentIcon from '@mui/icons-material/Payment';
 import TableChartIcon from '@mui/icons-material/TableChart';
 import StorageIcon from '@mui/icons-material/Storage';
+import InventoryIcon from '@mui/icons-material/Inventory';
 
 const drawerWidth = 240;
 
@@ -30,6 +31,7 @@ const menuItems = [
   { path: '/wholesaler-dashboard/orders-table', icon: <TableChartIcon />, text: 'Orders Table' },
   { path: '/wholesaler-dashboard/profile', icon: <AccountCircleIcon />, text: 'Profile' },
   { path: '/wholesaler-dashboard/stock-levels', icon: <StorageIcon />, text: 'Stock Levels' },
+  { path: '/wholesaler-dashboard/stock-list', icon: <InventoryIcon />, text: 'Stock List' },
 ];
 
 const WholesaleSidebar = ({ open, handleDrawerClose }) => {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import WholesaleSidebar from './components/WholesaleSidebar';
 import { Box, Container } from '@mui/material';
 import { Routes, Route } from 'react-router-dom';
-import AddStock from '../pages/WholesalerDashboard/AddStock'; // Import your components
+// import AddStock from '../pages/WholesalerDashboard/AddStock'; // Import your components
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -87,6 +87,14 @@ const DashboardLayout = () => {
               element={
                 <Box sx={{ width: '100%', textAlign: 'center' }}>
                   <h1>Stock Levels</h1>
+                </Box>
+              } 
+            />
+            <Route 
+              path="/wholesaler-dashboard/stock-list" 
+              element={
+                <Box sx={{ width: '100%', textAlign: 'center' }}>
+                  <h1>Stock List</h1>
                 </Box>
               } 
             />

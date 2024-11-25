@@ -37,6 +37,7 @@ import UpdateStock from './pages/WholesalerDashboard/UpdateStock';
 import OrdersTable from './pages/WholesalerDashboard/OrdersTable';
 import Profile from './pages/WholesalerDashboard/Profile';
 import StockLevels from './pages/WholesalerDashboard/StockLevels';
+import StockList from './pages/WholesalerDashboard/StockList';
 
 const AppContent = () => {
   const isAuthenticated = true; // Replace with actual authentication logic
@@ -121,6 +122,7 @@ const AppContent = () => {
             <Route path="wholesale-overview" element={<WholesaleOverview/>} />
             <Route path="add-stock" element={<AddStock />} />
             <Route path="update-stock" element={<UpdateStock />} />
+            <Route path="stock-list"  element={<StockList />} />
             <Route path="payment" element={<Payments />} />
             <Route path="orders-table" element={<OrdersTable />} />
             <Route path="profile" element={<Profile />} />

@@ -20,16 +20,16 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 const sampleOrders = [
   { 
     id: "ORD001", 
-    productName: "Product A", 
+    productName: "Home Grown Feed", 
     quantity: 10, 
-    customer: "Mabel Asante",
+    customer: "Mabel Hackman",
     status: "pending",
     date: "2024-03-15",
     total: 500.00
   },
   { 
     id: "ORD002", 
-    productName: "Product B", 
+    productName: "Starter Feed", 
     quantity: 5, 
     customer: "Calvin Bekoe",
     status: "completed",

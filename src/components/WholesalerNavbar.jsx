@@ -26,6 +26,8 @@ import StorageIcon from '@mui/icons-material/Storage';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import UpdateIcon from '@mui/icons-material/Update';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import InventoryIcon from '@mui/icons-material/Inventory';
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -112,6 +114,11 @@ const menuItems = [
     path: '/wholesaler-dashboard/update-stock', 
     icon: <UpdateIcon />, 
     text: 'Update stock' 
+  },
+  {
+    path: '/wholesaler-dashboard/stock-list',
+    icon: <InventoryIcon />,
+    text: 'Stock List'
   },
   { 
     path: '/wholesaler-dashboard/paymentform', 
